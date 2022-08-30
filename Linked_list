@@ -76,6 +76,22 @@ void deletion(Node* &head,int val){
     
 }
 
+//Reverse Linked list
+Node* reverse(Node* &head){
+    Node* Prevptr= NULL;
+    Node* currentptr=head;
+    Node* nextptr;
+    
+    while(currentptr!=NULL){
+        nextptr=currentptr->next;
+        currentptr->next=Prevptr;
+        
+        Prevptr=currentptr;
+        currentptr=nextptr;
+    }
+    return Prevptr;
+    
+}
 
 void display(Node* head){
 Node* temp=head;
@@ -107,7 +123,8 @@ cout<<"False";
 //deletion(head,4);
 //deleteathead(head);
 
-display(head);
+Node* newhead=reverse(head);
+display(newhead);
 
 
 }
