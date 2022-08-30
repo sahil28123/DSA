@@ -1,0 +1,115 @@
+#include<iostream>
+using namespace std;
+
+class Node{
+public:
+int value;
+Node* next;
+
+//Parameterised Constructor
+Node (int val){
+value=val;
+next=NULL;
+}
+};
+
+//Insert at tail function:
+void insertattail(Node* &head, int val){ //in this line we take head reference not value i.e. &head
+    
+//Create new node
+Node* n= new Node(val);
+if(head==NULL){
+head=n;
+return;
+} 
+Node* temp= head;
+while(temp->next!=NULL){
+temp=temp->next;
+}
+temp->next=n;
+}
+
+//insert node at beginning
+void insertatbeginning(Node* &head,int val){
+    Node* n= new Node(val);
+    n->next=head;
+    head=n;
+}
+
+//search Element
+bool search(Node* head,int key){
+    Node* temp = head;
+    while(temp!=NULL){
+        if(temp->value==key){
+            return true;
+        }
+        temp=temp->next;
+    }
+    return false;
+    
+}
+
+//deletion at head
+void deleteathead(Node* &head){
+    Node* todelete = head;
+    head=head->next;
+    delete(todelete);
+}
+
+//Delete element
+void deletion(Node* &head,int val){
+    if(head==NULL){
+        return;
+    }
+    if(head->next==NULL){
+        deleteathead(head);
+        return;
+    }
+    Node* temp=head;
+    while(temp->next->value!=val){
+        temp=temp->next;
+    }
+    Node* todelete= temp->next;
+    temp->next=temp->next->next;
+    
+    delete(todelete);
+    
+}
+
+
+void display(Node* head){
+Node* temp=head;
+while(temp!=NULL){
+cout<<temp->value<<"->";
+temp=temp->next;
+}
+cout<<"Null"<<endl;
+}
+
+int main(){
+
+Node* head=NULL;
+
+insertattail(head,2);
+insertattail(head,3);
+insertattail(head,4);
+ insertatbeginning(head,1);
+ insertattail(head,5);
+ insertattail(head,6);
+display(head);
+/*int search_val=search(head,5);
+if(search_val==0){
+cout<<"False";
+}else{
+    cout<<"true";
+}
+*/
+//deletion(head,4);
+//deleteathead(head);
+
+display(head);
+
+
+}
+
+
