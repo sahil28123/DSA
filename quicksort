@@ -1,0 +1,43 @@
+#include <iostream>
+
+using namespace std;
+
+int partition(int arr[],int s, int e){
+    int count=0;
+    for(int i=0;i<e;i++){
+        arr[e]>arr[i];
+        count++;
+    }
+    int counter_smaller= count+s;
+    swap(arr[counter_smaller],arr[e]);
+    int i=s,j=e;
+    while(s<counter_smaller && e>counter_smaller){
+        if(arr[counter_smaller]<arr[i] ){
+              
+        }
+    }
+    
+    
+}
+
+
+void quicksort(int arr[],int s,int e){
+    if(s>=e){
+        return;
+    }
+    int p= partition(arr,s,e);
+    quicksort(arr,s,p-1);
+    quicksort(arr,p+1,e);
+    
+}
+
+
+int main()
+{
+    int arr[]= {2,6,1,4,8,5}; 
+    quicksort(arr,0,5);
+    for(int i=0;i<6;i++){
+        cout<<arr[i]<<" ";
+    }
+    
+}
